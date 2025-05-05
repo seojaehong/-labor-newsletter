@@ -1,0 +1,37 @@
+name: Daily Labor Newsletter
+
+on:
+  schedule:
+    - cron: '0 22 * * *'  # 매일 오전 7시 (한국시간 기준 UTC+9)
+  workflow_dispatch:  # 수동 실행도 가능하게 설정
+
+jobs:
+  run-newsletter:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 체크아웃 저장소
+      uses: actions/checkout@v4
+
+    - name: 파이썬 설정
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: 패키지 설치
+      run: |
+        pip install -r requirements.txt
+
+    - name: 뉴스레터 실행
+      env:
+        ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      run: |
+        python main.py > newsletter.txt
+
+    - name: 결과물 저장소에 커밋
+      run: |
+        git config --global user.name 'GitHub Actions'
+        git config --global user.email 'actions@github.com'
+        git add newsletter.txt
+        git commit -m "뉴스레터 자동 업데이트 - $(date +'%Y-%m-%d')"
+        git push
