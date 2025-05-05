@@ -2,8 +2,11 @@ name: Daily Labor Newsletter
 
 on:
   schedule:
-    - cron: '0 22 * * *'  # 매일 오전 7시 (한국시간 기준 UTC+9)
-  workflow_dispatch:  # 수동 실행도 가능하게 설정
+    - cron: '0 22 * * *'  # 한국시간 오전 7시
+  workflow_dispatch:
+
+permissions:
+  contents: write  # 저장소에 쓰기 권한 부여 (중요)
 
 jobs:
   run-newsletter:
