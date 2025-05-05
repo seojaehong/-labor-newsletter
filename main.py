@@ -1,7 +1,4 @@
 
-# 필요한 패키지 설치
-!pip install feedparser beautifulsoup4 anthropic
-
 # 모듈 임포트
 import feedparser
 import os
