@@ -31,11 +31,10 @@ jobs:
         python main.py > newsletter.txt
 
     - name: 결과물 저장소에 커밋
-    run: |
-    git config --global user.name 'GitHub Actions'
-    git config --global user.email 'actions@github.com'
-    git pull origin main --rebase
-    git add newsletter.txt
-    git commit -m "뉴스레터 자동 업데이트 - $(date +'%Y-%m-%d')" || echo "커밋할 변경사항이 없습니다."
-    git push origin main
-
+      run: |
+        git config --global user.name 'GitHub Actions'
+        git config --global user.email 'actions@github.com'
+        git pull origin main --rebase
+        git add newsletter.txt
+        git commit -m "뉴스레터 자동 업데이트 - $(date +'%Y-%m-%d')" || echo "커밋할 변경사항이 없습니다."
+        git push origin main
