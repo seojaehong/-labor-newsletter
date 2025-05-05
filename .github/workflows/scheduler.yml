@@ -25,11 +25,14 @@ jobs:
       run: |
         pip install -r requirements.txt
 
-    - name: 뉴스레터 실행
-      env:
-        ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-      run: |
-        python main.py > newsletter.txt
+ - name: 뉴스레터 실행
+  env:
+    ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+    EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
+    EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+  run: |
+    python main.py > newsletter.txt
+
 
     - name: 결과물 저장소에 커밋
       run: |
