@@ -11,7 +11,7 @@ import pytz
 import traceback # 트레이스백 출력을 위해 임포트
 
 # 시간대 설정 (RSS 피드 날짜 처리를 위해)
-UTC = pytz.utc
+UTC = pytz.timezone('UTC') # UTC 시간대 객체 명확히 정의
 
 # --- 스크립트 전체 실행을 감싸는 try-except 블록 추가 ---
 # 임포트 오류나 초기 설정 오류를 잡기 위함입니다.
@@ -46,8 +46,11 @@ try:
         sys.exit(1) # 오류 발생 시 스크립트 종료
 
     # 현재 날짜 및 시간대 설정
-    today = datetime.today()
-    today_str = today.strftime("%Y년 %m월 %d일")
+    # 현재 시각을 시스템의 로컬 시간대로 얻은 후, UTC로 변환
+    # datetime.now(pytz.timezone('Asia/Seoul')) 처럼 명확히 로컬 시간대 지정 권장
+    local_now = datetime.now(pytz.timezone('Asia/Seoul')) # 로컬 시간대 (예: 서울)
+    today_str = local_now.strftime("%Y년 %m월 %d일") # 뉴스레터 제목에 사용할 날짜 (로컬 시간 기준)
+
 
     def clean_html_entities(text):
         """텍스트에서 기본적인 HTML 태그 및 엔티티를 제거합니다."""
@@ -63,28 +66,70 @@ try:
         return text.strip()
 
     def parse_feed_date(date_string):
-        """RSS 발행일 문자열을 datetime 객체로 파싱합니다."""
+        """RSS 발행일 문자열을 datetime 객체로 파싱하고 UTC aware로 만듭니다."""
         if not isinstance(date_string, str):
-            return datetime.today().replace(tzinfo=UTC) # 문자열이 아니면 현재 시각(UTC) 반환
+             # 파싱 실패 시 기본값: 현재 시각을 UTC aware로 반환
+            return datetime.now(UTC)
 
         try:
-            # RFC 822 형식 파싱 (시간대 포함)
-            dt = datetime.strptime(date_string, '%a, %d %b %Y %H:%M:%S %Z')
-            # 시간대 정보가 있는 경우 UTC로 변환
-            if dt.tzinfo is not None:
-                dt = dt.astimezone(UTC)
-            return dt
-        except ValueError:
+            # feedparser가 제공하는 문자열 날짜를 dateutil 또는 feedparser의 parsed 결과로 파싱
+            # dateutil.parser.parse가 가장 유연하지만, pytz만 사용 시 직접 파싱 시도
+            # feedparser.parsed_parsed는 UTC 튜플이므로 이것을 사용하는 것이 가장 좋음
+
+            # 직접 문자열 파싱 시도
             try:
-                # ISO 8601 형식 파싱
-                dt = datetime.fromisoformat(date_string.replace('Z', '+00:00'))
-                 # 시간대 정보가 있는 경우 UTC로 변환
-                if dt.tzinfo is not None:
-                    dt = dt.astimezone(UTC)
-                return dt
+                # RFC 822 형식 (예: 'Wed, 08 May 2024 10:00:00 +0000' 또는 'Wed, 08 May 2024 19:00:00 KST')
+                # feedparser의 날짜 문자열은 시간대 정보가 포함될 수 있음.
+                # fromisoformat은 +HH:MM 형태만 잘 다루고, 약어는 어렵. strptime은 %Z 처리가 까다로움.
+                # pytz의 localize 또는 astimezone 사용 필요.
+
+                # 간편하게, feedparser의 parsed 결과를 우선 사용 (UTC 보장)
+                # 이 함수는 entry.published 문자열을 받지만, 실제 호출부에서 parsed_parsed 우선 고려 필요
+                # 여기서는 문자열 파싱만 시도
+                dt = None
+                # RFC 822 파싱 시도
+                try:
+                    dt = datetime.strptime(date_string, '%a, %d %b %Y %H:%M:%S %Z')
+                except ValueError:
+                    # 시간대 약어 없을 경우 시도
+                    try:
+                        dt = datetime.strptime(date_string, '%a, %d %b %Y %H:%M:%S')
+                    except ValueError:
+                         pass # 다음 형식 시도
+
+                # ISO 8601 파싱 시도
+                if dt is None:
+                     try:
+                        # 'Z'를 '+00:00'으로 치환하여 fromisoformat이 파싱 가능하게 함
+                        dt = datetime.fromisoformat(date_string.replace('Z', '+00:00'))
+                     except ValueError:
+                         pass # 파싱 실패
+
+                # 파싱 성공 시, 시간대 정보가 없으면 UTC로 가정하고 aware로 만듦
+                if dt and dt.tzinfo is None:
+                     # print(f"Warning: Naive date parsed '{date_string}'. Localizing as UTC.", file=sys.stderr)
+                     dt = UTC.localize(dt) # UTC aware로 만듦
+                # 시간대 정보가 있으면 UTC로 변환
+                elif dt and dt.tzinfo is not None and dt.tzinfo != UTC:
+                     dt = dt.astimezone(UTC) # UTC로 변환
+
+                if dt:
+                     return dt # 파싱 성공 및 UTC aware 변환 완료
+                else:
+                     # 어떤 형식으로도 파싱 실패 시
+                     print(f"날짜 형식 파싱 최종 실패: '{date_string}'", file=sys.stderr)
+                     return datetime.now(UTC) # 파싱 실패 시 현재 시각(UTC) 반환
+
+
             except Exception as e:
-                # print(f"날짜 형식 파싱 실패: '{date_string}' - {e}", file=sys.stderr) # 파싱 실패 로깅
-                return datetime.today().replace(tzinfo=UTC) # 파싱 실패 시 현재 시각(UTC) 반환
+                # 파싱 시도 중 예상치 못한 다른 오류 발생 시
+                print(f"날짜 문자열 파싱 중 오류: '{date_string}' - {e}", file=sys.stderr)
+                print(traceback.format_exc(), file=sys.stderr)
+                return datetime.now(UTC) # 오류 발생 시 현재 시각(UTC) 반환
+
+
+        # 예외 없이 최종 파싱 실패 시 (위에서 이미 처리되지만 안전 장치)
+        return datetime.now(UTC)
 
 
     def fetch_rss_feed(url):
@@ -93,58 +138,74 @@ try:
         news = []
         # 필터링 기준 시간대 설정 (최대 3일까지)
         # 현재 시각을 UTC로 얻어와 기준점으로 사용
-        utc_now = UTC.localize(datetime.utcnow())
-        time_threshold_3days = utc_now - timedelta(days=3)
+        utc_now = datetime.now(UTC) # 현재 시각을 UTC aware로 얻음
+        time_threshold_3days = utc_now - timedelta(days=3) # UTC aware 기준 시간
 
-
+        # --- 수정된 날짜 파싱 및 비교 로직 ---
         for entry in feed.entries:
-            published_date_obj = datetime.today().replace(tzinfo=UTC) # 날짜 파싱 실패 시 기본값 (현재 시각 UTC)
+            # Default value if no valid date is found, set as UTC aware (current time)
+            published_date_obj = datetime.now(UTC) # UTC aware default
 
-            # 발행일 파싱 시도
-            if hasattr(entry, 'published'):
-                 published_date_obj = parse_feed_date(entry.published)
-            elif hasattr(entry, 'published_parsed'):
-                 # feedparser가 파싱한 튜플 사용 (보통 더 안정적)
+            # 1. feedparser의 표준 파싱 결과 (published_parsed 튜플) 사용 (UTC 보장)
+            if hasattr(entry, 'published_parsed') and entry.published_parsed:
+                try:
+                    # feedparser의 parsed_parsed 튜플은 UTC 기준
+                    published_date_obj = datetime(*entry.published_parsed[:6])
+                    published_date_obj = UTC.localize(published_date_obj) # UTC aware로 만듦
+                    # print(f"Parsed tuple date ({entry.title}): {published_date_obj}", file=sys.stderr) # Debugging date
+                except Exception as e:
+                    print(f"Feedparser parsed_parsed 오류 ({entry.title}): {e}", file=sys.stderr)
+                    print(traceback.format_exc(), file=sys.stderr)
+                    # Keep default value if parsing fails
+
+            # 2. parsed_parsed가 없거나 오류 발생 시, 원본 날짜 문자열 (published) 파싱 시도
+            elif hasattr(entry, 'published') and entry.published:
                  try:
-                     # 튜플을 datetime 객체로 변환 (시간대 정보 없을 수 있음)
-                     published_date_obj = datetime(*entry.published_parsed[:6])
-                     # 시간대 정보가 없는 경우 UTC로 가정 (또는 피드에 따라 다르게 처리)
-                     published_date_obj = UTC.localize(published_date_obj)
-                 except Exception as e:
-                     # print(f"feedparser 튜플 파싱 실패: {e}", file=sys.stderr)
-                     published_date_obj = datetime.today().replace(tzinfo=UTC) # 실패 시 현재 시각 UTC
+                     # parse_feed_date 함수 사용 (UTC aware 반환 시도)
+                     parsed_from_string = parse_feed_date(entry.published)
+                     if parsed_from_string.tzinfo is not None:
+                          published_date_obj = parsed_from_string # 파싱 성공 및 aware 확인
+                          # print(f"Parsed raw date ({entry.title}): {published_date_obj}", file=sys.stderr) # Debugging date
+                     else:
+                          # parse_feed_date가 aware로 만들지 못한 경우 (매우 드물어야 함)
+                          print(f"Warning: parse_feed_date returned naive date for '{entry.title}'. Using default.", file=sys.stderr)
+                          # Keep default value (current time UTC aware)
 
+                 except Exception as e: # parse_feed_date 내부 오류 외 추가 오류 감지
+                      print(f"Raw date string parsing 호출 오류 ({entry.title}): {e}", file=sys.stderr)
+                      print(traceback.format_exc(), file=sys.stderr)
+                      # Keep default value
 
+            # --- 날짜 비교 (이제 둘 다 UTC aware) ---
             # 필터링: 설정된 시간 기준(최대 3일) 이내의 기사만 포함
-            # published_date_obj와 time_threshold_3days 모두 UTC이므로 정확한 비교 가능
             if published_date_obj >= time_threshold_3days:
+                # --- 기사 내용 추출 및 클리닝 (이전 코드와 동일) ---
                 summary_text = ""
-                # summary 또는 content 속성에서 본문 추출 시도
                 if hasattr(entry, 'summary'):
                      summary_text = entry.summary
                 elif hasattr(entry, 'content'):
                      if entry.content and isinstance(entry.content, list) and 'value' in entry.content[0]:
                          summary_text = entry.content[0].value
 
-                # 제목, 링크, 본문 클리닝
                 title = clean_html_entities(entry.title if hasattr(entry, 'title') else "제목 없음")
-                link = entry.link.strip() if hasattr(entry, 'link') else "" # 링크 없으면 빈 문자열
+                link = entry.link.strip() if hasattr(entry, 'link') else ""
                 summary = clean_html_entities(summary_text)
 
                 # 유효한 기사 정보만 추가 (제목 있고 링크 있고 요약 내용 있는 경우)
-                if title != "제목 없음" and link and summary: # 링크 필수 조건 추가
+                if title != "제목 없음" and link and summary:
                      news.append({
                          "title": title,
                          "link": link,
-                         "published": published_date_obj, # UTC datetime 객체
+                         "published": published_date_obj, # UTC aware datetime 객체
                          "summary": summary
                      })
                 # else:
-                     # 불완전하거나 링크 없는 기사 건너뛰기 로깅
-                     # print(f"불완전하거나 링크 없는 기사 건너뛰기: 제목='{title}', 링크='{link}', 요약={len(summary)}자", file=sys.stderr)
+                     # 불완전하거나 링크 없는 기사 건너뛰기 로깅 (optional)
+                     # print(f"Skipping incomplete/linkless article: Title='{title}', Link='{link}', Summary={len(summary)}", file=sys.stderr)
 
 
-        return news
+        return news # Return the list of valid, recent news items
+
 
     def gemini_summary_and_implication(content):
         """Gemini API를 사용하여 뉴스 내용을 요약하고 실무 시사점을 추출합니다."""
@@ -230,7 +291,7 @@ try:
         MAX_ARTICLES_TOTAL = 10 # 뉴스레터 전체 최대 기사 수
 
         # 시간 기준 설정 (UTC 기준)
-        utc_now = UTC.localize(datetime.utcnow())
+        utc_now = datetime.now(UTC) # 현재 시각을 UTC aware로 얻음
         threshold_24h = utc_now - timedelta(hours=24)
         threshold_2days = utc_now - timedelta(days=2)
         threshold_3days = utc_now - timedelta(days=3) # 3일 기준점도 명확히 정의
@@ -273,9 +334,13 @@ try:
                 print(f" - 기사 요약 중 ({i+1}/{len(final_selected_articles)}): {item['title']}", file=sys.stderr)
                 # 출력을 위해 발행일 형식을 문자열로 변환 (KST로 변환)
                 try:
+                     # published는 UTC aware, KST로 변환
                      kst_published = item['published'].astimezone(pytz.timezone('Asia/Seoul'))
                      published_str = kst_published.strftime('%Y-%m-%d %H:%M')
-                except Exception:
+                except Exception as e:
+                     print(f"날짜 KST 변환 오류 ({item['title']}): {e}", file=sys.stderr)
+                     print(traceback.format_exc(), file=sys.stderr)
+                     # 변환 실패 시 UTC로 출력 또는 오류 메시지
                      published_str = item['published'].strftime('%Y-%m-%d %H:%M UTC') # 변환 실패 시 UTC로 출력
 
 
