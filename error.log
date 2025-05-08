@@ -1,1 +1,78 @@
-Hello standard error
+스크립트 실행 시작!
+RSS 피드 가져오기 시작 (최대 최근 3일 기준)...
+ - 피드 가져오는 중: 사건/사고 (https://rss.app/feeds/5wPlBHdpqAJmIchh.xml)
+오류 발생: 피드 '사건/사고' (https://rss.app/feeds/5wPlBHdpqAJmIchh.xml) 처리 중 오류: can't compare offset-naive and offset-aware datetimes
+Traceback (most recent call last):
+  File "/home/runner/work/-labor-newsletter/-labor-newsletter/main.py", line 212, in generate_newsletter
+    news_items = fetch_rss_feed(url) # fetch_rss_feed에서 3일 필터링 및 UTC 파싱 수행
+                 ^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/-labor-newsletter/-labor-newsletter/main.py", line 120, in fetch_rss_feed
+    if published_date_obj >= time_threshold_3days:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: can't compare offset-naive and offset-aware datetimes
+
+ - 피드 가져오는 중: 노동정책 (https://rss.app/feeds/G6EBProFzjCISBt2.xml)
+오류 발생: 피드 '노동정책' (https://rss.app/feeds/G6EBProFzjCISBt2.xml) 처리 중 오류: can't compare offset-naive and offset-aware datetimes
+Traceback (most recent call last):
+  File "/home/runner/work/-labor-newsletter/-labor-newsletter/main.py", line 212, in generate_newsletter
+    news_items = fetch_rss_feed(url) # fetch_rss_feed에서 3일 필터링 및 UTC 파싱 수행
+                 ^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/-labor-newsletter/-labor-newsletter/main.py", line 120, in fetch_rss_feed
+    if published_date_obj >= time_threshold_3days:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: can't compare offset-naive and offset-aware datetimes
+
+ - 피드 가져오는 중: 노동조합 (https://rss.app/feeds/c9pv5qpCmgYEROxT.xml)
+오류 발생: 피드 '노동조합' (https://rss.app/feeds/c9pv5qpCmgYEROxT.xml) 처리 중 오류: can't compare offset-naive and offset-aware datetimes
+Traceback (most recent call last):
+  File "/home/runner/work/-labor-newsletter/-labor-newsletter/main.py", line 212, in generate_newsletter
+    news_items = fetch_rss_feed(url) # fetch_rss_feed에서 3일 필터링 및 UTC 파싱 수행
+                 ^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/-labor-newsletter/-labor-newsletter/main.py", line 120, in fetch_rss_feed
+    if published_date_obj >= time_threshold_3days:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: can't compare offset-naive and offset-aware datetimes
+
+ - 피드 가져오는 중: 노사관계 (https://rss.app/feeds/JaS17kFMTvYda6QG.xml)
+오류 발생: 피드 '노사관계' (https://rss.app/feeds/JaS17kFMTvYda6QG.xml) 처리 중 오류: can't compare offset-naive and offset-aware datetimes
+Traceback (most recent call last):
+  File "/home/runner/work/-labor-newsletter/-labor-newsletter/main.py", line 212, in generate_newsletter
+    news_items = fetch_rss_feed(url) # fetch_rss_feed에서 3일 필터링 및 UTC 파싱 수행
+                 ^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/-labor-newsletter/-labor-newsletter/main.py", line 120, in fetch_rss_feed
+    if published_date_obj >= time_threshold_3days:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: can't compare offset-naive and offset-aware datetimes
+
+ - 피드 가져오는 중: 노동법 (https://rss.app/feeds/YuTCnwc6CzBa5CIR.xml)
+오류 발생: 피드 '노동법' (https://rss.app/feeds/YuTCnwc6CzBa5CIR.xml) 처리 중 오류: can't compare offset-naive and offset-aware datetimes
+Traceback (most recent call last):
+  File "/home/runner/work/-labor-newsletter/-labor-newsletter/main.py", line 212, in generate_newsletter
+    news_items = fetch_rss_feed(url) # fetch_rss_feed에서 3일 필터링 및 UTC 파싱 수행
+                 ^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/-labor-newsletter/-labor-newsletter/main.py", line 120, in fetch_rss_feed
+    if published_date_obj >= time_threshold_3days:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: can't compare offset-naive and offset-aware datetimes
+
+ - 피드 가져오는 중: 한겨레 노동뉴스 (https://rss.app/feeds/teZ7fkbACRalryLf.xml)
+오류 발생: 피드 '한겨레 노동뉴스' (https://rss.app/feeds/teZ7fkbACRalryLf.xml) 처리 중 오류: can't compare offset-naive and offset-aware datetimes
+Traceback (most recent call last):
+  File "/home/runner/work/-labor-newsletter/-labor-newsletter/main.py", line 212, in generate_newsletter
+    news_items = fetch_rss_feed(url) # fetch_rss_feed에서 3일 필터링 및 UTC 파싱 수행
+                 ^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/-labor-newsletter/-labor-newsletter/main.py", line 120, in fetch_rss_feed
+    if published_date_obj >= time_threshold_3days:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: can't compare offset-naive and offset-aware datetimes
+
+전체 고유 유효 기사 수 (최대 3일 이내): 0
+ - 선택된 기사 수 (24시간 이내): 0
+ - 5개 미만이라 최근 2일 이내(24h~2d) 기사 0개 추가. 현재 총 0개
+ - 여전히 5개 미만이라 최근 3일 이내(2d~3d) 기사 0개 추가. 현재 총 0개
+뉴스레터에 포함될 최종 기사 수: 0
+뉴스레터 콘텐츠 생성 완료. 이메일 발송 단계로 이동합니다.
+이메일 발송 시도: iceamericano9@gmail.com
+이메일이 성공적으로 발송되었습니다!
+
+스크립트 실행 종료.
