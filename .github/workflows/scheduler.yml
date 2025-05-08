@@ -13,12 +13,9 @@ jobs:
   run-newsletter:
     runs-on: ubuntu-latest
 
-    # GitHub Actions 봇(GITHUB_TOKEN)에게 권한 부여
-    # 자동 커밋 Action 사용 시 필요합니다.
-    permissions: # <-- 이 블록 유지
-      contents: write # <-- 쓰기 권한 유지
+    permissions:
+      contents: write
 
-    # 작업(Job)이 수행할 단계(Steps)들
     steps:
       # 1. GitHub 리포지토리 코드 체크아웃
       - name: 체크아웃 저장소
@@ -37,38 +34,48 @@ jobs:
           pip install -r requirements.txt
 
       # 4. Python 스크립트 실행
-      # 스크립트 실행 결과(뉴스레터 내용)가 newsletter.txt 파일로 저장됩니다.
-      # 메일 발송도 이 스텝 실행 중에 발생합니다.
+      # 스크립트의 표준 출력(Standard Output)은 newsletter.txt로 리다이렉션됩니다.
+      # 스크립트의 표준 에러(Standard Error)는 error.log로 리다이렉션됩니다.
+      # 스크립트 내부에서 print(...) 는 표준 출력으로, print(..., file=sys.stderr) 는 표준 에러로 갑니다.
       - name: 뉴스레터 실행 (메일 발송 포함)
         env:
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
           EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
         run: |
-          # 스크립트 실행. 표준 출력은 newsletter.txt로 리다이렉션됩니다.
-          # 스크립트 내부의 print문은 Actions 로그에 표시됩니다.
-          python main.py > newsletter.txt
+          # 스크립트 실행 및 출력 리다이렉션 설정
+          # 2> error.log 는 표준 에러를 error.log 파일로 보낸다는 의미입니다.
+          # 파일이 비어있더라도 생성되도록 touch 명령 추가 (선택 사항)
+          # touch newsletter.txt error.log
+          python main.py > newsletter.txt 2> error.log
 
-      # 5. 결과물 자동 커밋 및 푸시 (외부 Action 사용)
-      # 이 스텝이 이전의 수동 git 명령어 스텝 (결과물 저장소에 커밋)을 완전히 대체합니다.
-      # 스텝 4에서 newsletter.txt 파일에 변경사항이 생겼음을 감지하여 자동으로 커밋하고 푸시합니다.
+      # 4.5 생성된 뉴스레터 파일(newsletter.txt) 아티팩트 업로드
+      # 스크립트 실행 결과인 뉴스레터 내용을 확인하기 위함입니다.
+      - name: 생성된 뉴스레터 파일 아티팩트 업로드
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-newsletter
+          path: newsletter.txt
+          if-no-files-found: ignore # 파일이 없으면 무시 (오류 아님)
+
+      # 4.6 실행 중 발생한 에러 로그 파일 아티팩트 업로드
+      # 스크립트 실행 중 표준 에러로 출력된 내용을 확인하기 위함입니다.
+      # 스크립트에 오류가 없었다면 이 파일은 비어있거나 존재하지 않을 수 있습니다.
+      - name: 에러 로그 파일 아티팩트 업로드
+        uses: actions/upload-artifact@v4
+        with:
+          name: error-log
+          path: error.log
+          if-no-files-found: ignore # 파일이 없으면 무시 (오류 아님)
+
+
+      # 5. 결과물 자동 커밋 및 푸시
+      # 스텝 4에서 newsletter.txt 파일에 변경사항이 생겼는지 감지합니다.
       - name: 결과물 자동 커밋
-        # stefanzweifel/git-auto-commit-action Action 사용
-        # https://github.com/stefanzweifel/git-auto-commit-action
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          # 커밋할 파일 지정. 생략 시 변경된 모든 파일이 커밋 대상이 됩니다.
-          # files: newsletter.txt # 특정 파일만 커밋하려면 주석 해제
-
-          # 커밋 메시지 설정 (선택 사항)
-          # 기본값: 'ci: Automated change'
+          files: newsletter.txt # newsletter.txt 파일만 커밋 대상으로 명시
           commit_message: "뉴스레터 자동 업데이트 - $(date +'%Y-%m-%d')"
-
-          # 커밋봇 정보 설정 (선택 사항)
-          # 기본값 사용 시 'github-actions[bot]'으로 표시됩니다.
-          # commit_user_name: 'Your Bot Name'
-          # commit_user_email: 'your-bot-email@example.com'
-
-          # GITHUB_TOKEN 사용 설정 (필요한 권한은 이미 permissions 블록에서 부여됨)
-          # 토큰을 명시적으로 지정하려면 아래 주석을 해제합니다. 보통 기본값으로 작동합니다.
+          # commit_user_name: 'GitHub Actions Bot'
+          # commit_user_email: 'github-actions[bot]@users.noreply.github.com'
           # token: ${{ secrets.GITHUB_TOKEN }}
