@@ -2,82 +2,73 @@
 name: Daily Labor Newsletter
 
 # 워크플로우 실행 트리거 설정
-# schedule: 매일 특정 시간에 실행
-# cron 표현식: 분 시간 일 월 요일 (UTC 기준)
-# '0 22 * * *'는 매일 UTC 22시 0분 (한국 시간 아침 7시)을 의미합니다.
 on:
   schedule:
-    - cron: '0 22 * * *' # 매일 아침 7시 (한국시간 기준)에 실행
+    - cron: '0 22 * * *' # 매일 아침 7시 (한국시간 기준)
 
-  # GitHub 웹 인터페이스에서 수동으로 워크플로우를 실행할 수 있는 버튼 추가
   workflow_dispatch:
 
 # 작업(Job) 정의
 jobs:
-  run-newsletter: # 작업(Job)의 ID (원하는 이름으로 지정 가능)
-    # 이 작업이 실행될 환경
-    runs-on: ubuntu-latest # 최신 우분투 환경에서 실행
+  run-newsletter:
+    runs-on: ubuntu-latest
 
     # GitHub Actions 봇(GITHUB_TOKEN)에게 권한 부여
-    # 이 권한이 있어야 리포지토리에 파일을 커밋하고 푸시할 수 있습니다.
-    permissions: # <-- 이 블록과 들여쓰기 위치가 중요합니다. 'runs-on'과 같은 레벨입니다.
-      contents: write # <-- 리포지토리 콘텐츠(파일, 코드)에 대한 쓰기 권한 부여
+    # 자동 커밋 Action 사용 시 필요합니다.
+    permissions: # <-- 이 블록 유지
+      contents: write # <-- 쓰기 권한 유지
 
     # 작업(Job)이 수행할 단계(Steps)들
     steps:
       # 1. GitHub 리포지토리 코드 체크아웃
       - name: 체크아웃 저장소
-        uses: actions/checkout@v4 # 리포지토리 코드를 runner 환경으로 가져옵니다.
+        uses: actions/checkout@v4
 
       # 2. Python 환경 설정
       - name: Python 설정
-        uses: actions/setup-python@v5 # Python 설치 및 환경 설정 액션 사용
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.11' # 사용할 Python 버전 지정
+          python-version: '3.11'
 
       # 3. 의존성 라이브러리 설치
-      # requirements.txt 파일에 스크립트 실행에 필요한 라이브러리 목록이 있어야 합니다.
-      # (feedparser, beautifulsoup4, google-generativeai, pytz)
       - name: 패키지 설치
         run: |
-          # pip를 최신 버전으로 업그레이드
           python -m pip install --upgrade pip
-          # requirements.txt에 명시된 라이브러리 설치
           pip install -r requirements.txt
 
       # 4. Python 스크립트 실행
-      # GitHub Secrets에 설정한 환경 변수들을 스크립트 실행 환경에 전달합니다.
-      - name: 뉴스레터 실행
-        env: # <-- 환경 변수 설정 블록
-          # GOOGLE_API_KEY Secret 값을 GOOGLE_API_KEY 환경 변수로 전달
+      # 스크립트 실행 결과(뉴스레터 내용)가 newsletter.txt 파일로 저장됩니다.
+      # 메일 발송도 이 스텝 실행 중에 발생합니다.
+      - name: 뉴스레터 실행 (메일 발송 포함)
+        env:
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
-          # EMAIL_ADDRESS Secret 값을 EMAIL_ADDRESS 환경 변수로 전달
           EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
-          # EMAIL_PASSWORD Secret 값을 EMAIL_PASSWORD 환경 변수로 전달
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
-        run: | # <-- 실행할 쉘 명령어들을 여기에 작성합니다. '|' 뒤에 들여쓰기 필요.
-          # 실제 실행할 파이썬 스크립트 파일 이름을 정확히 입력하세요.
-          # 여기서는 파일 이름이 main.py라고 가정합니다.
-          python main.py > newsletter.txt # main.py 실행 결과를 newsletter.txt 파일에 저장
+        run: |
+          # 스크립트 실행. 표준 출력은 newsletter.txt로 리다이렉션됩니다.
+          # 스크립트 내부의 print문은 Actions 로그에 표시됩니다.
+          python main.py > newsletter.txt
 
-      # 5. 생성된 결과물(newsletter.txt)을 저장소에 커밋
-      - name: 결과물 저장소에 커밋
-        run: | # <-- 실행할 쉘 명령어들
-          # 이메일 발송만 하고 리포지토리에 파일을 저장하고 싶지 않다면 이 스텝 전체를 삭제하세요.
+      # 5. 결과물 자동 커밋 및 푸시 (외부 Action 사용)
+      # 이 스텝이 이전의 수동 git 명령어 스텝 (결과물 저장소에 커밋)을 완전히 대체합니다.
+      # 스텝 4에서 newsletter.txt 파일에 변경사항이 생겼음을 감지하여 자동으로 커밋하고 푸시합니다.
+      - name: 결과물 자동 커밋
+        # stefanzweifel/git-auto-commit-action Action 사용
+        # https://github.com/stefanzweifel/git-auto-commit-action
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          # 커밋할 파일 지정. 생략 시 변경된 모든 파일이 커밋 대상이 됩니다.
+          # files: newsletter.txt # 특정 파일만 커밋하려면 주석 해제
 
-          # Git 커밋에 사용할 사용자 이름과 이메일 설정 (GitHub Actions 봇으로 표시)
-          git config --global user.name 'GitHub Actions'
-          git config --global user.email 'actions@github.com'
+          # 커밋 메시지 설정 (선택 사항)
+          # 기본값: 'ci: Automated change'
+          commit_message: "뉴스레터 자동 업데이트 - $(date +'%Y-%m-%d')"
 
-          # --- 이전 오류의 원인이었던 git pull origin main --rebase 줄을 제거했습니다 ---
-          # git pull origin main --rebase # <-- 이 줄이 없습니다.
+          # 커밋봇 정보 설정 (선택 사항)
+          # 기본값 사용 시 'github-actions[bot]'으로 표시됩니다.
+          # commit_user_name: 'Your Bot Name'
+          # commit_user_email: 'your-bot-email@example.com'
 
-          # 이전 스텝(4)에서 생성된 newsletter.txt 파일을 Git 스테이징 영역에 추가
-          git add newsletter.txt
-
-          # 변경사항이 있는지 확인하고, 있다면 커밋 실행
-          # '|| echo ...'는 변경사항이 없을 경우 커밋 명령이 실패하더라도 워크플로우가 멈추지 않고 메시지만 출력하게 합니다.
-          git commit -m "뉴스레터 자동 업데이트 - $(date +'%Y-%m-%d')" || echo "커밋할 변경사항이 없습니다."
-
-          # 커밋한 변경사항을 GitHub 리포지토리의 main 브랜치로 푸시
-          git push origin main # <-- 푸시 대상 브랜치 이름(main)을 확인하세요. 다른 이름이면 수정 필요.
+          # GITHUB_TOKEN 사용 설정 (필요한 권한은 이미 permissions 블록에서 부여됨)
+          # 토큰을 명시적으로 지정하려면 아래 주석을 해제합니다. 보통 기본값으로 작동합니다.
+          # token: ${{ secrets.GITHUB_TOKEN }}
