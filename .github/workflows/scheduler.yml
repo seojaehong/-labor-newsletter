@@ -1,40 +1,67 @@
-name: Daily Labor Newsletter
+name: Daily Labor Newsletter # 워크플로우 이름
 
+# 워크플로우 실행 트리거 설정
+# schedule: 매일 특정 시간에 실행
+# cron 표현식: 분 시간 일 월 요일 (UTC 기준)
+# '0 22 * * *'는 매일 UTC 22시 0분 (한국 시간 아침 7시)을 의미합니다.
 on:
   schedule:
-    - cron: '0 22 * * *'  # 매일 아침 7시 (한국시간 기준)
+    - cron: '0 22 * * *' # 매일 아침 7시 (한국시간 기준)에 실행
+
+  # GitHub 웹 인터페이스에서 수동으로 워크플로우를 실행할 수 있는 버튼 추가
   workflow_dispatch:
 
 jobs:
-  run-newsletter:
-    runs-on: ubuntu-latest
+  run-newsletter: # 작업 이름
+    runs-on: ubuntu-latest # 작업을 실행할 환경 (최신 우분투)
 
     steps:
-    - name: 체크아웃 저장소
-      uses: actions/checkout@v4
+      # 1. 리포지토리 코드 체크아웃
+      - name: 체크아웃 저장소
+        uses: actions/checkout@v4
 
-    - name: Python 설정
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.11'
+      # 2. Python 환경 설정
+      - name: Python 설정
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11' # 사용할 Python 버전
 
-    - name: 패키지 설치
-      run: |
-        pip install -r requirements.txt
+      # 3. 의존성 라이브러리 설치
+      # requirements.txt 파일에 필요한 라이브러리 목록이 있어야 합니다.
+      # (google-generativeai, feedparser, beautifulsoup4 등)
+      - name: 패키지 설치
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-    - name: 뉴스레터 실행
-      env:
-        ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
-        EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
-      run: |
-        python main.py > newsletter.txt
+      # 4. Python 스크립트 실행
+      # GitHub Secrets에 설정한 환경 변수들을 스크립트 실행 환경에 전달합니다.
+      - name: 뉴스레터 실행
+        env:
+          # ANTHROPIC_API_KEY 대신 GOOGLE_API_KEY를 전달합니다.
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+        run: |
+          # 실행할 파이썬 스크립트 파일 이름을 정확히 입력하세요.
+          # 이전 예시에서는 newsletter_script.py 였습니다.
+          python newsletter_script.py > newsletter.txt # 스크립트 실행 결과를 newsletter.txt에 저장
 
-    - name: 결과물 저장소에 커밋
-      run: |
-        git config --global user.name 'GitHub Actions'
-        git config --global user.email 'actions@github.com'
-        git pull origin main --rebase
-        git add newsletter.txt
-        git commit -m "뉴스레터 자동 업데이트 - $(date +'%Y-%m-%d')" || echo "커밋할 변경사항이 없습니다."
-        git push origin main
+      # 5. 생성된 결과물(newsletter.txt)을 저장소에 커밋 (기존 워크플로우에 있었던 기능 유지)
+      - name: 결과물 저장소에 커밋
+        run: |
+          # GitHub Actions 봇으로 커밋 설정
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'actions@github.com'
+          
+          # 최신 변경사항 풀 (충돌 방지)
+          git pull origin main --rebase # main 브랜치 이름 확인 필요
+
+          # newsletter.txt 파일 추가
+          git add newsletter.txt
+
+          # 변경사항이 있으면 커밋, 없으면 메시지 출력 후 종료
+          git commit -m "뉴스레터 자동 업데이트 - $(date +'%Y-%m-%d')" || echo "커밋할 변경사항이 없습니다."
+
+          # 변경사항 푸시
+          git push origin main # main 브랜치 이름 확인 필요
