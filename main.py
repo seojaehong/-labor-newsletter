@@ -125,47 +125,59 @@ try:
 
     def fetch_rss_feed(url):
         """단일 RSS 피드에서 최신 기사를 가져와 필터링합니다."""
-        feed = feedparser.parse(url)
+        print(f"DEBUG: Fetching feed URL: {url}", file=sys.stderr) # <-- 디버깅 메시지 추가
+        try:
+            feed = feedparser.parse(url)
+            print(f"DEBUG: Parsed feed URL: {url}", file=sys.stderr) # <-- 디버깅 메시지 추가
+            if not hasattr(feed, 'entries'):
+                 print(f"DEBUG: No 'entries' found in feed {url}", file=sys.stderr) # <-- 디버깅 메시지 추가
+                 return [] # 항목이 없으면 빈 리스트 반환
+
+            print(f"DEBUG: Number of entries in feed: {len(feed.entries)}", file=sys.stderr) # <-- 디버깅 메시지 추가
+        except Exception as e:
+             print(f"DEBUG: Error parsing feed {url}: {e}", file=sys.stderr) # <-- 디버깅 메시지 추가
+             print(traceback.format_exc(), file=sys.stderr)
+             # 파싱 오류 발생 시 빈 목록 반환 (오류 핸들링)
+             return [] # 오류 발생 시 해당 피드는 건너뛰도록 빈 리스트 반환
+
         news = []
         # 필터링 기준 시간대 설정 (최대 3일까지)
         # 현재 시각을 UTC로 얻어와 기준점으로 사용
         utc_now = datetime.now(UTC) # 현재 시각을 UTC aware로 얻음
         time_threshold_3days = utc_now - timedelta(days=3) # UTC aware 기준 시간
 
-        # --- 수정된 날짜 파싱 및 비교 로직 ---
-        for entry in feed.entries:
+        # --- 수정된 날짜 파싱 및 비교 로직 (이전과 동일) ---
+        for i, entry in enumerate(feed.entries): # <-- 인덱스 추가
+            # print(f"DEBUG: Processing entry {i+1} of {len(feed.entries)} from {url}", file=sys.stderr) # <-- 항목별 상세 로그 (너무 많을 수 있음)
+
             # Default value if no valid date is found, set as UTC aware (current time)
             published_date_obj = datetime.now(UTC) # UTC aware default
 
             # 1. feedparser의 표준 파싱 결과 (published_parsed 튜플) 사용 (UTC 보장)
             if hasattr(entry, 'published_parsed') and entry.published_parsed:
                 try:
-                    # feedparser의 parsed_parsed 튜플은 UTC 기준
                     published_date_obj = datetime(*entry.published_parsed[:6])
                     published_date_obj = UTC.localize(published_date_obj) # UTC aware로 만듦
-                    # print(f"Parsed tuple date ({entry.title}): {published_date_obj}", file=sys.stderr) # Debugging date
+                    # print(f"Parsed tuple date ({entry.title if hasattr(entry, 'title') else '제목 없음'}): {published_date_obj}", file=sys.stderr) # Debugging date
                 except Exception as e:
-                    print(f"Feedparser parsed_parsed 오류 ({entry.title}): {e}", file=sys.stderr)
+                    print(f"Feedparser parsed_parsed 오류 ({entry.title if hasattr(entry, 'title') else '제목 없음'}): {e}", file=sys.stderr)
                     print(traceback.format_exc(), file=sys.stderr)
                     # Keep default value if parsing fails
 
             # 2. parsed_parsed가 없거나 오류 발생 시, 원본 날짜 문자열 (published) 파싱 시도
             elif hasattr(entry, 'published') and entry.published:
                  try:
-                     # parse_feed_date 함수 사용 (UTC aware 반환 시도)
-                     parsed_from_string = parse_feed_date(entry.published)
+                     parsed_from_string = parse_feed_date(entry.published) # parse_feed_date는 자체 로깅 포함
                      if parsed_from_string.tzinfo is not None:
                           published_date_obj = parsed_from_string # 파싱 성공 및 aware 확인
-                          # print(f"Parsed raw date ({entry.title}): {published_date_obj}", file=sys.stderr) # Debugging date
+                          # print(f"Parsed raw date ({entry.title if hasattr(entry, 'title') else '제목 없음'}): {published_date_obj}", file=sys.stderr) # Debugging date
                      else:
                           # parse_feed_date가 aware로 만들지 못한 경우 (매우 드물어야 함)
-                          print(f"Warning: parse_feed_date returned naive date for '{entry.title}'. Using default.", file=sys.stderr)
-                          # Keep default value (current time UTC aware)
+                          print(f"Warning: parse_feed_date returned naive date for '{entry.title if hasattr(entry, 'title') else '제목 없음'}'. Using default.", file=sys.stderr)
 
                  except Exception as e: # parse_feed_date 내부 오류 외 추가 오류 감지
-                      print(f"Raw date string parsing 호출 오류 ({entry.title}): {e}", file=sys.stderr)
+                      print(f"Raw date string parsing 호출 오류 ({entry.title if hasattr(entry, 'title') else '제목 없음'}): {e}", file=sys.stderr)
                       print(traceback.format_exc(), file=sys.stderr)
-                      # Keep default value
 
             # --- 날짜 비교 (이제 둘 다 UTC aware) ---
             # 필터링: 설정된 시간 기준(최대 3일) 이내의 기사만 포함
