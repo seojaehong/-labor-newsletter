@@ -45,7 +45,7 @@ jobs:
         run: |
           # 실행할 파이썬 스크립트 파일 이름을 정확히 입력하세요.
           # 이전 예시에서는 newsletter_script.py 였습니다.
-          python newsletter_script.py > newsletter.txt # 스크립트 실행 결과를 newsletter.txt에 저장
+          python main.py > newsletter.txt # 스크립트 실행 결과를 newsletter.txt에 저장
 
       # 5. 생성된 결과물(newsletter.txt)을 저장소에 커밋 (기존 워크플로우에 있었던 기능 유지)
       - name: 결과물 저장소에 커밋
