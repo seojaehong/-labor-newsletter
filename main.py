@@ -1,6 +1,3 @@
-# 수정된 노동법 뉴스레터 생성 코드
-
-```python
 import sys
 import feedparser
 from bs4 import BeautifulSoup
