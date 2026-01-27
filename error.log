@@ -16,269 +16,241 @@ See README for more details:
 https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
 
   import google.generativeai as genai
-[0.5초] ✓ google.generativeai 로드 성공
-[0.5초] Gemini API 설정 완료, 연결 테스트 시도...
+[0.7초] ✓ google.generativeai 로드 성공
+[0.7초] Gemini API 설정 완료, 연결 테스트 시도...
 WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-E0000 00:00:1769465892.461322    2098 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769465892.461380    2098 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769465892.678802    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769465892.678845    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769465893.644015    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769465893.644056    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769465893.936597    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769465893.936635    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769465896.100580    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769465896.100619    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769465897.857671    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769465897.857708    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769465898.129544    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769465898.129591    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769465898.212779    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769465898.212816    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769465900.662726    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769465900.662764    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769465907.336730    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769465907.336768    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769465912.885731    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769465912.885768    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769465913.545085    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769465913.545122    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769465915.358776    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769465915.358813    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769465917.420265    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769465917.420304    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769465922.649502    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769465922.649541    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769465928.070504    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769465928.070544    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769465934.974585    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769465934.974637    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769465936.467247    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769465936.467285    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769465937.621056    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769465937.621096    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769465945.182133    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769465945.182172    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769465948.408627    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769465948.408669    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769465952.114959    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769465952.115000    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769465958.002063    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769465958.002110    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769465964.928105    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769465964.928140    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769465974.344873    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769465974.344916    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769465980.792502    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769465980.792545    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769465985.264389    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769465985.264429    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769465988.399332    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769465988.399370    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769465994.600699    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769465994.600739    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466003.246288    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466003.246326    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466010.588632    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466010.588674    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466015.721129    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466015.721169    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466021.103870    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466021.103920    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466031.014759    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466031.014798    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466038.150224    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466038.150260    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466045.522432    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466045.522471    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466046.360690    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466046.360729    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466047.696074    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466047.696112    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466051.884401    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466051.884441    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466058.319765    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466058.319803    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466067.450992    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466067.451034    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466074.831838    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466074.831879    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466083.884651    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466083.884694    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466093.009095    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466093.009136    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466102.815835    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466102.815874    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466106.014670    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466106.014714    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466114.294025    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466114.294054    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466115.288488    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466115.288525    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466118.639529    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466118.639587    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466122.358050    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466122.358090    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466126.778682    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466126.778730    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466133.681888    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466133.681929    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466142.156951    2096 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466142.156989    2096 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466143.071288    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466143.071327    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466150.610582    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466150.610623    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466154.711704    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466154.711746    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466157.890045    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466157.890083    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466164.383453    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466164.383496    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466167.741680    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466167.741717    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466171.679299    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466171.679341    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466172.723893    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466172.723929    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466175.591901    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466175.591929    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466180.272377    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466180.272417    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466184.743860    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466184.743899    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466185.125698    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466185.125734    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466187.977997    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466187.978037    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466190.258085    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466190.258126    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466192.160275    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466192.160314    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466200.975715    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466200.975769    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466209.971660    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466209.971702    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466209.991193    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466209.991209    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466213.272696    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466213.272733    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466217.419420    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466217.419460    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466217.434367    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466217.434387    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466224.220491    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466224.220535    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466229.097702    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466229.097740    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466234.068760    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466234.068797    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466234.761834    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466234.761874    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466239.395657    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466239.395697    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466240.189265    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466240.189302    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466248.726343    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466248.726383    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466256.562484    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466256.562525    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466259.762272    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466259.762311    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466268.196551    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466268.196610    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466276.289635    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466276.289673    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466276.998158    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466276.998204    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466282.160032    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466282.160079    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466291.974012    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466291.974053    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466297.744999    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466297.745040    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466299.553996    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466299.554034    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466301.386540    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466301.386594    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466308.227601    2286 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466308.227648    2286 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466309.924630    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466309.924671    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466311.825699    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466311.825737    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466320.189834    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466320.189870    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466327.608808    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466327.608850    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466334.514160    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466334.514198    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466343.244491    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466343.244530    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466345.976391    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466345.976428    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466352.360513    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466352.360552    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466361.738117    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466361.738158    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466362.229023    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466362.229059    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466368.328007    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466368.328047    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466375.994900    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466375.994938    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466382.002797    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466382.002854    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466388.909462    2098 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466388.909499    2098 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466391.202682    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466391.202720    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466395.801963    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466395.802000    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466396.229886    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466396.229922    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466398.508803    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466398.508841    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466402.405287    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466402.405327    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466404.737122    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466404.737161    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466405.964242    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466405.964281    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466415.958584    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466415.958633    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466419.392536    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466419.392602    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466427.990467    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466427.990517    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466431.850807    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466431.850847    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466441.183210    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466441.183249    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466447.982597    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466447.982645    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466449.368190    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466449.368230    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466458.503139    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466458.503179    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466460.365217    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466460.365262    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466461.463397    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466461.463435    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466464.204230    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466464.204268    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466465.246897    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466465.246937    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466470.132062    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466470.132104    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466473.224459    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466473.224499    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466480.802552    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466480.802610    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-E0000 00:00:1769466490.260499    2093 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
-E0000 00:00:1769466490.260542    2093 plugin_credentials.cc:82] Plugin added invalid metadata value.
-[598.4초] ✗ Gemini API 오류: Timeout of 600.0s exceeded, last exception: 503 Illegal metadata
-[598.4초] Traceback (most recent call last):
+E0000 00:00:1769552360.019842    2306 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552360.019883    2306 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552360.401398    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552360.401429    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552361.408817    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552361.408847    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552362.579641    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552362.579678    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552364.113919    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552364.113952    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552364.244670    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552364.244696    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552365.633689    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552365.633728    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552370.373377    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552370.373407    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552371.328324    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552371.328364    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552376.607266    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552376.607291    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552378.228063    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552378.228091    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552387.711852    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552387.711885    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552390.435735    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552390.435767    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552393.070682    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552393.070717    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552395.318357    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552395.318389    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552403.685081    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552403.685119    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552410.036314    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552410.036353    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552411.576470    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552411.576508    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552421.090303    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552421.090335    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552425.781979    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552425.782011    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552432.103263    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552432.103306    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552440.479741    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552440.479774    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552446.644780    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552446.644818    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552452.633188    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552452.633235    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552459.605927    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552459.605968    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552461.873279    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552461.873317    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552468.169894    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552468.169936    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552468.362939    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552468.362961    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552473.338058    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552473.338095    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552474.025728    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552474.025764    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552479.593608    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552479.593645    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552487.494051    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552487.494088    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552490.542835    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552490.542890    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552496.671678    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552496.671716    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552505.609715    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552505.609749    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552508.756485    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552508.756526    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552517.658959    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552517.658989    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552519.050035    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552519.050069    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552529.001203    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552529.001239    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552530.777633    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552530.777671    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552535.050606    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552535.050650    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552543.720739    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552543.720777    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552552.366825    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552552.366862    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552562.207199    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552562.207237    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552566.372746    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552566.372786    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552572.614966    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552572.615007    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552580.277802    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552580.277837    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552581.050662    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552581.050696    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552589.727704    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552589.727738    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552598.847942    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552598.847980    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552608.864824    2306 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552608.864894    2306 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552615.835529    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552615.835603    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552617.235436    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552617.235464    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552624.279053    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552624.279084    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552629.843877    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552629.843913    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552637.393400    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552637.393438    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552639.667334    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552639.667374    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552644.520919    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552644.520952    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552648.893118    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552648.893152    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552653.907804    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552653.907847    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552660.735779    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552660.735818    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552668.119769    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552668.119809    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552677.801339    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552677.801375    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552682.520431    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552682.520468    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552690.743954    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552690.743995    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552691.778361    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552691.778408    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552692.018908    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552692.018931    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552698.064844    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552698.064883    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552702.798377    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552702.798425    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552710.965936    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552710.965969    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552720.493707    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552720.493744    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552728.149873    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552728.149906    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552733.094622    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552733.094657    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552741.536125    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552741.536161    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552751.487966    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552751.488000    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552761.251059    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552761.251092    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552767.281826    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552767.281857    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552769.376148    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552769.376184    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552772.721401    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552772.721438    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552782.009461    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552782.009499    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552791.626974    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552791.627008    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552794.660952    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552794.660986    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552797.557417    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552797.557449    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552805.041454    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552805.041492    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552810.352492    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552810.352529    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552817.442403    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552817.442439    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552818.992873    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552818.992919    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552825.955303    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552825.955337    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552834.548932    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552834.548972    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552842.851057    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552842.851094    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552851.000584    2307 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552851.000682    2307 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552854.000464    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552854.000511    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552857.070810    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552857.070853    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552864.260235    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552864.260272    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552868.523902    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552868.523936    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552870.405937    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552870.405972    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552874.167303    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552874.167341    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552875.574667    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552875.574699    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552878.724557    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552878.724594    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552886.150068    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552886.150105    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552893.983232    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552893.983273    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552897.205708    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552897.205739    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552901.906729    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552901.906769    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552910.752371    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552910.752417    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552911.645301    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552911.645332    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552918.313169    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552918.313203    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552918.454826    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552918.454849    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552926.332872    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552926.332904    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552929.982902    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552929.982932    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552932.639881    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552932.639920    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552935.098251    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552935.098289    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552944.995324    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552944.995367    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552945.711009    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552945.711045    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552952.078905    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552952.078943    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+E0000 00:00:1769552957.238676    2303 plugin_credentials.cc:79] validate_metadata_from_plugin: INTERNAL:Illegal header value
+E0000 00:00:1769552957.238714    2303 plugin_credentials.cc:82] Plugin added invalid metadata value.
+[597.9초] ✗ Gemini API 오류: Timeout of 600.0s exceeded, last exception: 503 Illegal metadata
+[597.9초] Traceback (most recent call last):
   File "/opt/hostedtoolcache/Python/3.11.14/x64/lib/python3.11/site-packages/google/api_core/grpc_helpers.py", line 75, in error_remapped_callable
     return callable_(*args, **kwargs)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -343,7 +315,7 @@ Traceback (most recent call last):
     raise final_exc from source_exc
 google.api_core.exceptions.RetryError: Timeout of 600.0s exceeded, last exception: 503 Illegal metadata
 
-[598.4초] RSS 피드 테스트...
-[598.6초] ✓ RSS 피드 접근 가능: 상태 코드=403
-[598.8초] ✓ RSS 피드 파싱 성공: 1개 항목 발견
-[598.8초] 스크립트 실행 완료!
+[597.9초] RSS 피드 테스트...
+[598.1초] ✓ RSS 피드 접근 가능: 상태 코드=403
+[598.2초] ✓ RSS 피드 파싱 성공: 1개 항목 발견
+[598.2초] 스크립트 실행 완료!
